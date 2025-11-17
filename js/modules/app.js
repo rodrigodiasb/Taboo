@@ -1,0 +1,1 @@
+export function initApp(){ console.log('Taboo Fest App Loaded'); }
