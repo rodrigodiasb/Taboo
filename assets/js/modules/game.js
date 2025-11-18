@@ -19,11 +19,41 @@ export const Game = {
     this.words = await res.json();
   },
 
+  //
+  // ─────────────────────────────────────────────── MODE: LIVRE ─────
+  //
   async startLivre() {
     await this.loadWords();
     this.nextCardLivre();
   },
 
+  nextCardLivre() {
+    this.current = this.words[Math.floor(Math.random() * this.words.length)];
+    this.showCardLivre();
+  },
+
+  showCardLivre() {
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2 class="text-3xl font-bold text-center mb-4">${this.current.palavra}</h2>
+
+        <div class="bg-slate-700 p-3 rounded mb-4">
+          <h3 class="font-semibold mb-2">Palavras proibidas:</h3>
+          <ul class="space-y-1">
+            ${this.current.tabus.map(t => `<li>• ${t}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div class="btn bg-blue-600" id="btnNext">Próxima Carta</div>
+      </div>
+    `;
+
+    document.getElementById("btnNext").onclick = () => this.nextCardLivre();
+  },
+
+  //
+  // ─────────────────────────────────────────────── MODE: EQUIPES ─────
+  //
   async startTeams() {
     await this.loadWords();
 
@@ -31,6 +61,9 @@ export const Game = {
     this.turnStartScreen();
   },
 
+  //
+  // Tela antes do turno começar
+  //
   turnStartScreen() {
     const team = this.teams[this.currentTeamIndex];
 
@@ -45,29 +78,28 @@ export const Game = {
       </div>
     `;
 
+    // AQUI COMEÇA O TURNO
     document.getElementById("btnOK").onclick = () => this.startTurn();
   },
 
+  //
+  // StartTurn agora NÃO INICIA TIMER (fix do bug)
+  //
   startTurn() {
-    Timer.start(
-      document.getElementById("timer"),
-      this.settings.time,
-      () => this.finishTurn()
-    );
-
-    this.nextCardTeam();
+    this.nextCardTeam(); // Timer será iniciado dentro da tela do card
   },
 
-  nextCardLivre() {
-    this.current = this.words[Math.floor(Math.random() * this.words.length)];
-    this.showCardLivre();
-  },
-
+  //
+  // Próxima carta do modo Equipes
+  //
   nextCardTeam() {
     this.current = this.words[Math.floor(Math.random() * this.words.length)];
     this.showCardTeam();
   },
 
+  //
+  // Tela da carta do Modo Equipes
+  //
   showCardTeam() {
     const team = this.teams[this.currentTeamIndex];
 
@@ -96,17 +128,30 @@ export const Game = {
       </div>
     `;
 
-    Timer.start(document.getElementById("timer"), this.settings.time, () => this.finishTurn());
+    //
+    // INICIAR TIMER — Correto e sem erro
+    //
+    Timer.start(
+      document.getElementById("timer"),
+      this.settings.time,
+      () => this.finishTurn()
+    );
 
+    //
+    // BOTÕES DO TURNO
+    //
     let pularLocked = false;
 
     document.getElementById("btnPular").onclick = () => {
       if (pularLocked) return;
+      pularLocked = true;
 
       Sound.pular();
-      pularLocked = true;
+
+      // trava por 10 segundos
       setTimeout(() => pularLocked = false, 10000);
 
+      // todos os outros times ganham ponto
       this.teams.forEach((t, i) => {
         if (i !== this.currentTeamIndex) t.score++;
       });
@@ -127,6 +172,9 @@ export const Game = {
     };
   },
 
+  //
+  // ─────────────────────────────────────────────── FIM DO TURNO ─────
+  //
   finishTurn() {
     this.teams[this.currentTeamIndex].turnsLeft--;
 
@@ -141,6 +189,9 @@ export const Game = {
     this.turnStartScreen();
   },
 
+  //
+  // ─────────────────────────────────────────────── TELA FINAL ─────
+  //
   showFinalScore() {
     document.getElementById("app").innerHTML = `
       <div class="card">
