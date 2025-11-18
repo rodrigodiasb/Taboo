@@ -1,0 +1,17 @@
+[
+  {
+    "type": "classica",
+    "palavra": "Telefone",
+    "tabus": ["Ligar", "Chamada", "Número", "Toque", "Celular"]
+  },
+  {
+    "type": "atual",
+    "palavra": "Streaming",
+    "tabus": ["Netflix", "Filmes", "Séries", "Online", "Vídeo"]
+  },
+  {
+    "type": "zoeira",
+    "palavra": "Crossfiteiro",
+    "tabus": ["Burpee", "WOD", "Agachar", "Forte", "Treino"]
+  }
+]
