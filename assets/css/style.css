@@ -1,0 +1,18 @@
+.card {
+  background: #1e293b;
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.35);
+}
+
+.btn {
+  background: #475569;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background: #64748b;
+}
