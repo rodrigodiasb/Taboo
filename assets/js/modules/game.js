@@ -177,19 +177,27 @@ startTurn() {
   //
   // ─────────────────────────────────────────────── FIM DO TURNO ─────
   //
-  finishTurn() {
-    this.teams[this.currentTeamIndex].turnsLeft--;
+finishTurn() {
+  // reduz o turno da equipe atual
+  this.teams[this.currentTeamIndex].turnsLeft--;
 
-    const nextTeam = this.teams.find(t => t.turnsLeft > 0);
+  // verifica se TODOS os times terminaram
+  const aindaTemTurnos = this.teams.some(t => t.turnsLeft > 0);
 
-    if (!nextTeam) {
-      this.showFinalScore();
-      return;
-    }
+  if (!aindaTemTurnos) {
+    this.showFinalScore();
+    return;
+  }
 
-    this.currentTeamIndex = this.teams.indexOf(nextTeam);
-    this.turnStartScreen();
-  },
+  // avança para o próximo time em ordem circular
+  do {
+    this.currentTeamIndex = (this.currentTeamIndex + 1) % this.teams.length;
+  } while (this.teams[this.currentTeamIndex].turnsLeft <= 0);
+
+  // inicia a tela do próximo time
+  this.turnStartScreen();
+}
+
 
   //
   // ─────────────────────────────────────────────── TELA FINAL ─────
