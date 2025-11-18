@@ -85,9 +85,19 @@ export const Game = {
   //
   // StartTurn agora NÃO INICIA TIMER (fix do bug)
   //
-  startTurn() {
-    this.nextCardTeam(); // Timer será iniciado dentro da tela do card
-  },
+startTurn() {
+  // renderiza card primeiro
+  this.nextCardTeam();
+
+  // aguarda o DOM criar o #timer (pequeno delay)
+  setTimeout(() => {
+    const timerEl = document.getElementById("timer");
+    if (timerEl) {
+      Timer.start(timerEl, this.settings.time, () => this.finishTurn());
+    }
+  }, 50);
+}
+
 
   //
   // Próxima carta do modo Equipes
@@ -128,14 +138,6 @@ export const Game = {
       </div>
     `;
 
-    //
-    // INICIAR TIMER — Correto e sem erro
-    //
-    Timer.start(
-      document.getElementById("timer"),
-      this.settings.time,
-      () => this.finishTurn()
-    );
 
     //
     // BOTÕES DO TURNO
