@@ -1,15 +1,6 @@
-/* Simple styling to complement Tailwind */
-.card {
-  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
-}
-.timer-large {
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-.taboo-list li {
-  margin-bottom: 6px;
-}
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+/* Modern accents */
+.card { box-shadow: 0 8px 30px rgba(2,6,23,0.7); }
+.timer-large { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+.taboo-list li { margin-bottom: 6px; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.center-max { max-width: 640px; margin-left: auto; margin-right: auto; }
