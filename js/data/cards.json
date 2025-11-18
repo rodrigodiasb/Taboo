@@ -1,1 +1,1044 @@
-{"cards":[]}
+{
+  "cartas": [
+    {
+      "palavra": "TELEFONE",
+      "tabu": [
+        "chamada",
+        "número",
+        "tocar",
+        "ligar",
+        "aparelho"
+      ]
+    },
+    {
+      "palavra": "CAFÉ",
+      "tabu": [
+        "bebida",
+        "manhã",
+        "xícara",
+        "quente",
+        "acordar"
+      ]
+    },
+    {
+      "palavra": "PRAIA",
+      "tabu": [
+        "areia",
+        "mar",
+        "sol",
+        "guarda-sol",
+        "ondas"
+      ]
+    },
+    {
+      "palavra": "AVIÃO",
+      "tabu": [
+        "voo",
+        "piloto",
+        "aeroporto",
+        "decolar",
+        "bagagem"
+      ]
+    },
+    {
+      "palavra": "FARMÁCIA",
+      "tabu": [
+        "remédio",
+        "receita",
+        "balcão",
+        "comprar",
+        "saúde"
+      ]
+    },
+    {
+      "palavra": "INVERNO",
+      "tabu": [
+        "frio",
+        "casaco",
+        "neve",
+        "vento",
+        "cachecol"
+      ]
+    },
+    {
+      "palavra": "BIBLIOTECA",
+      "tabu": [
+        "livros",
+        "silêncio",
+        "ler",
+        "estudo",
+        "estante"
+      ]
+    },
+    {
+      "palavra": "CINEMA",
+      "tabu": [
+        "filme",
+        "pipoca",
+        "tela",
+        "ingresso",
+        "sala"
+      ]
+    },
+    {
+      "palavra": "WHATSAPP",
+      "tabu": [
+        "mensagem",
+        "grupo",
+        "áudio",
+        "celular",
+        "status"
+      ]
+    },
+    {
+      "palavra": "PODCAST",
+      "tabu": [
+        "áudio",
+        "ouvir",
+        "apresentador",
+        "conversa",
+        "episódio"
+      ]
+    },
+    {
+      "palavra": "AIRFRYER",
+      "tabu": [
+        "fritar",
+        "cozinha",
+        "óleo",
+        "prática",
+        "alimento"
+      ]
+    },
+    {
+      "palavra": "PIX",
+      "tabu": [
+        "dinheiro",
+        "banco",
+        "pagar",
+        "instantâneo",
+        "transferência"
+      ]
+    },
+    {
+      "palavra": "STREAMING",
+      "tabu": [
+        "filme",
+        "série",
+        "internet",
+        "plataforma",
+        "assistir"
+      ]
+    },
+    {
+      "palavra": "SELFIE",
+      "tabu": [
+        "foto",
+        "câmera",
+        "celular",
+        "rosto",
+        "pose"
+      ]
+    },
+    {
+      "palavra": "INFLUENCER",
+      "tabu": [
+        "internet",
+        "seguidores",
+        "vídeo",
+        "conteúdo",
+        "rede social"
+      ]
+    },
+    {
+      "palavra": "CHATGPT",
+      "tabu": [
+        "IA",
+        "pergunta",
+        "texto",
+        "resposta",
+        "robô"
+      ]
+    },
+    {
+      "palavra": "RESSACA",
+      "tabu": [
+        "bebida",
+        "dor",
+        "ontem",
+        "cabeça",
+        "festa"
+      ]
+    },
+    {
+      "palavra": "CRUSH",
+      "tabu": [
+        "gostar",
+        "pessoa",
+        "paquera",
+        "amor",
+        "mensagem"
+      ]
+    },
+    {
+      "palavra": "FOFOQUEIRO",
+      "tabu": [
+        "falar",
+        "secreto",
+        "vizinho",
+        "contar",
+        "história"
+      ]
+    },
+    {
+      "palavra": "CARRO REBAIXADO",
+      "tabu": [
+        "suspensão",
+        "chão",
+        "barulho",
+        "rebaixar",
+        "tune"
+      ]
+    },
+    {
+      "palavra": "ROLÊ",
+      "tabu": [
+        "sair",
+        "amigos",
+        "noite",
+        "festa",
+        "chamar"
+      ]
+    },
+    {
+      "palavra": "TRETA",
+      "tabu": [
+        "briga",
+        "discussão",
+        "confusão",
+        "arrumar",
+        "caos"
+      ]
+    },
+    {
+      "palavra": "GAMBIARRA",
+      "tabu": [
+        "improviso",
+        "fita",
+        "arrumar",
+        "jeito",
+        "solução"
+      ]
+    },
+    {
+      "palavra": "MARMITA",
+      "tabu": [
+        "comida",
+        "pote",
+        "almoço",
+        "esquentar",
+        "levar"
+      ]
+    },
+    {
+      "palavra": "COMPUTADOR",
+      "tabu": [
+        "mouse",
+        "teclado",
+        "tela",
+        "ligar",
+        "internet"
+      ]
+    },
+    {
+      "palavra": "ACADEMIA",
+      "tabu": [
+        "treinar",
+        "peso",
+        "aparelho",
+        "musculação",
+        "suor"
+      ]
+    },
+    {
+      "palavra": "CHOCOLATE",
+      "tabu": [
+        "doce",
+        "barra",
+        "cacau",
+        "açúcar",
+        "comer"
+      ]
+    },
+    {
+      "palavra": "TRÂNSITO",
+      "tabu": [
+        "carro",
+        "engarrafamento",
+        "buzina",
+        "sinal",
+        "rua"
+      ]
+    },
+    {
+      "palavra": "JORNAL",
+      "tabu": [
+        "notícia",
+        "papel",
+        "reportagem",
+        "manchete",
+        "escrever"
+      ]
+    },
+    {
+      "palavra": "HOSPITAL",
+      "tabu": [
+        "médico",
+        "enfermeiro",
+        "paciente",
+        "remédio",
+        "emergência"
+      ]
+    },
+    {
+      "palavra": "FONE DE OUVIDO",
+      "tabu": [
+        "música",
+        "áudio",
+        "celular",
+        "ouvir",
+        "fio"
+      ]
+    },
+    {
+      "palavra": "NETFLIX",
+      "tabu": [
+        "filme",
+        "série",
+        "assistir",
+        "streaming",
+        "plataforma"
+      ]
+    },
+    {
+      "palavra": "TATUAGEM",
+      "tabu": [
+        "pele",
+        "agulha",
+        "desenho",
+        "tinta",
+        "dói"
+      ]
+    },
+    {
+      "palavra": "CHUVA",
+      "tabu": [
+        "água",
+        "molhar",
+        "guarda-chuva",
+        "tempestade",
+        "clima"
+      ]
+    },
+    {
+      "palavra": "FUTEBOL",
+      "tabu": [
+        "gol",
+        "bola",
+        "time",
+        "chute",
+        "campo"
+      ]
+    },
+    {
+      "palavra": "REUNIÃO",
+      "tabu": [
+        "trabalho",
+        "equipe",
+        "pauta",
+        "sala",
+        "conversar"
+      ]
+    },
+    {
+      "palavra": "BARALHO",
+      "tabu": [
+        "cartas",
+        "jogar",
+        "poker",
+        "naipe",
+        "mesa"
+      ]
+    },
+    {
+      "palavra": "ENERGÉTICO",
+      "tabu": [
+        "bebida",
+        "lata",
+        "cafeína",
+        "força",
+        "acordar"
+      ]
+    },
+    {
+      "palavra": "BOLO",
+      "tabu": [
+        "doce",
+        "aniversário",
+        "fatia",
+        "cobertura",
+        "festa"
+      ]
+    },
+    {
+      "palavra": "CARTÃO DE CRÉDITO",
+      "tabu": [
+        "banco",
+        "comprar",
+        "pagar",
+        "fatura",
+        "limite"
+      ]
+    },
+    {
+      "palavra": "YOUTUBER",
+      "tabu": [
+        "vídeo",
+        "canal",
+        "inscrito",
+        "conteúdo",
+        "gravar"
+      ]
+    },
+    {
+      "palavra": "MICROONDAS",
+      "tabu": [
+        "aquecer",
+        "comida",
+        "tempo",
+        "cozinha",
+        "ligar"
+      ]
+    },
+    {
+      "palavra": "TRABALHO",
+      "tabu": [
+        "empresa",
+        "salário",
+        "dia",
+        "tarefas",
+        "boss"
+      ]
+    },
+    {
+      "palavra": "ESCOLA",
+      "tabu": [
+        "aluno",
+        "professor",
+        "estudar",
+        "sala",
+        "lição"
+      ]
+    },
+    {
+      "palavra": "PIPOCA",
+      "tabu": [
+        "milho",
+        "estourar",
+        "cinema",
+        "panela",
+        "sal"
+      ]
+    },
+    {
+      "palavra": "MASSA",
+      "tabu": [
+        "macarrão",
+        "italiano",
+        "cozinhar",
+        "molho",
+        "espaguete"
+      ]
+    },
+    {
+      "palavra": "ALMOÇO",
+      "tabu": [
+        "comida",
+        "horário",
+        "prato",
+        "marmita",
+        "refeição"
+      ]
+    },
+    {
+      "palavra": "SORVETE",
+      "tabu": [
+        "frio",
+        "doce",
+        "casquinha",
+        "creme",
+        "gelado"
+      ]
+    },
+    {
+      "palavra": "TRAVESSEIRO",
+      "tabu": [
+        "cama",
+        "dormir",
+        "noite",
+        "conforto",
+        "cabeça"
+      ]
+    },
+    {
+      "palavra": "RELÓGIO",
+      "tabu": [
+        "hora",
+        "pulso",
+        "tempo",
+        "minuto",
+        "apontar"
+      ]
+    },
+    {
+      "palavra": "ESCADA",
+      "tabu": [
+        "subir",
+        "descer",
+        "degrau",
+        "andar",
+        "corrimão"
+      ]
+    },
+    {
+      "palavra": "BANHEIRO",
+      "tabu": [
+        "chuveiro",
+        "pia",
+        "usar",
+        "privada",
+        "higiene"
+      ]
+    },
+    {
+      "palavra": "LIVRO",
+      "tabu": [
+        "página",
+        "ler",
+        "história",
+        "autor",
+        "biblioteca"
+      ]
+    },
+    {
+      "palavra": "JARDIM",
+      "tabu": [
+        "planta",
+        "terra",
+        "flor",
+        "regar",
+        "verde"
+      ]
+    },
+    {
+      "palavra": "CELULAR",
+      "tabu": [
+        "telefone",
+        "mensagem",
+        "tela",
+        "ligar",
+        "aplicativo"
+      ]
+    },
+    {
+      "palavra": "INSTAGRAM",
+      "tabu": [
+        "foto",
+        "story",
+        "postar",
+        "rede social",
+        "curtir"
+      ]
+    },
+    {
+      "palavra": "TIKTOK",
+      "tabu": [
+        "vídeo",
+        "curto",
+        "trend",
+        "dança",
+        "viral"
+      ]
+    },
+    {
+      "palavra": "UBER",
+      "tabu": [
+        "carona",
+        "motorista",
+        "app",
+        "viagem",
+        "corrida"
+      ]
+    },
+    {
+      "palavra": "STREAMER",
+      "tabu": [
+        "live",
+        "jogo",
+        "assistir",
+        "computador",
+        "chat"
+      ]
+    },
+    {
+      "palavra": "INFLAÇÃO",
+      "tabu": [
+        "preço",
+        "subir",
+        "economia",
+        "dinheiro",
+        "custo"
+      ]
+    },
+    {
+      "palavra": "CRYPTO",
+      "tabu": [
+        "bitcoin",
+        "moeda",
+        "digital",
+        "investimento",
+        "carteira"
+      ]
+    },
+    {
+      "palavra": "INTELIGÊNCIA ARTIFICIAL",
+      "tabu": [
+        "programa",
+        "dados",
+        "computador",
+        "modelo",
+        "robô"
+      ]
+    },
+    {
+      "palavra": "DRONE",
+      "tabu": [
+        "voar",
+        "controle",
+        "câmera",
+        "alto",
+        "gravar"
+      ]
+    },
+    {
+      "palavra": "CARTEIRA DIGITAL",
+      "tabu": [
+        "pagamento",
+        "celular",
+        "app",
+        "dinheiro",
+        "QR code"
+      ]
+    },
+    {
+      "palavra": "MEME",
+      "tabu": [
+        "engraçado",
+        "internet",
+        "imagem",
+        "viral",
+        "postar"
+      ]
+    },
+    {
+      "palavra": "CORRER",
+      "tabu": [
+        "exercício",
+        "pista",
+        "velocidade",
+        "treino",
+        "fôlego"
+      ]
+    },
+    {
+      "palavra": "CADEIRA",
+      "tabu": [
+        "sentar",
+        "apoio",
+        "quarto",
+        "mesa",
+        "descansar"
+      ]
+    },
+    {
+      "palavra": "COZINHA",
+      "tabu": [
+        "fogo",
+        "comida",
+        "fritar",
+        "fogão",
+        "panelas"
+      ]
+    },
+    {
+      "palavra": "LANTERNA",
+      "tabu": [
+        "luz",
+        "escuridão",
+        "pilha",
+        "brilhar",
+        "apontar"
+      ]
+    },
+    {
+      "palavra": "VENTILADOR",
+      "tabu": [
+        "vento",
+        "girar",
+        "quente",
+        "frio",
+        "ar"
+      ]
+    },
+    {
+      "palavra": "BRIGADEIRO",
+      "tabu": [
+        "doce",
+        "festa",
+        "chocolate",
+        "enrolar",
+        "leite condensado"
+      ]
+    },
+    {
+      "palavra": "CAMPEONATO",
+      "tabu": [
+        "competição",
+        "time",
+        "jogo",
+        "torcida",
+        "disputa"
+      ]
+    },
+    {
+      "palavra": "PEN DRIVE",
+      "tabu": [
+        "arquivo",
+        "guardar",
+        "computador",
+        "USB",
+        "dados"
+      ]
+    },
+    {
+      "palavra": "PROFESSOR",
+      "tabu": [
+        "ensinar",
+        "aluno",
+        "aula",
+        "quadro",
+        "escola"
+      ]
+    },
+    {
+      "palavra": "NOODLES",
+      "tabu": [
+        "lámen",
+        "macarrão",
+        "rápido",
+        "pote",
+        "água quente"
+      ]
+    },
+    {
+      "palavra": "PARQUE",
+      "tabu": [
+        "verde",
+        "passeio",
+        "árvores",
+        "andar",
+        "banco"
+      ]
+    },
+    {
+      "palavra": "CÂMERA",
+      "tabu": [
+        "foto",
+        "vídeo",
+        "gravar",
+        "tela",
+        "flash"
+      ]
+    },
+    {
+      "palavra": "PRATELEIRA",
+      "tabu": [
+        "colocar",
+        "livro",
+        "coisas",
+        "apoio",
+        "móvel"
+      ]
+    },
+    {
+      "palavra": "MALA",
+      "tabu": [
+        "viagem",
+        "roupa",
+        "bagagem",
+        "arrumar",
+        "fechar"
+      ]
+    },
+    {
+      "palavra": "ÔNIBUS",
+      "tabu": [
+        "transporte",
+        "parada",
+        "coletivo",
+        "motorista",
+        "trajeto"
+      ]
+    },
+    {
+      "palavra": "ROBO",
+      "tabu": [
+        "máquina",
+        "programar",
+        "andar",
+        "tecnologia",
+        "metal"
+      ]
+    },
+    {
+      "palavra": "ÓCULOS",
+      "tabu": [
+        "ver",
+        "lente",
+        "rosto",
+        "armação",
+        "visão"
+      ]
+    },
+    {
+      "palavra": "CAMINHADA",
+      "tabu": [
+        "andar",
+        "exercício",
+        "estrada",
+        "passo",
+        "trilha"
+      ]
+    },
+    {
+      "palavra": "PRAZO",
+      "tabu": [
+        "tempo",
+        "entrega",
+        "final",
+        "data",
+        "limite"
+      ]
+    },
+    {
+      "palavra": "MOCHILA",
+      "tabu": [
+        "costas",
+        "guardar",
+        "andar",
+        "bolso",
+        "carregar"
+      ]
+    },
+    {
+      "palavra": "PLANTA",
+      "tabu": [
+        "verde",
+        "terra",
+        "regar",
+        "viva",
+        "folha"
+      ]
+    },
+    {
+      "palavra": "LÂMPADA",
+      "tabu": [
+        "luz",
+        "ligar",
+        "quarto",
+        "claro",
+        "energia"
+      ]
+    },
+    {
+      "palavra": "FONE BLUETOOTH",
+      "tabu": [
+        "sem fio",
+        "ouvir",
+        "música",
+        "celular",
+        "parear"
+      ]
+    },
+    {
+      "palavra": "TECLADO",
+      "tabu": [
+        "digitar",
+        "computador",
+        "letras",
+        "botões",
+        "escrever"
+      ]
+    },
+    {
+      "palavra": "CAMISETA",
+      "tabu": [
+        "roupa",
+        "usar",
+        "vestir",
+        "algodão",
+        "corpo"
+      ]
+    },
+    {
+      "palavra": "CERVEJA",
+      "tabu": [
+        "bar",
+        "bebida",
+        "gelada",
+        "lata",
+        "festa"
+      ]
+    },
+    {
+      "palavra": "MAQUIAGEM",
+      "tabu": [
+        "rosto",
+        "beleza",
+        "batom",
+        "pincel",
+        "pó"
+      ]
+    },
+    {
+      "palavra": "SMARTWATCH",
+      "tabu": [
+        "pulso",
+        "notificação",
+        "celular",
+        "relógio",
+        "contar passos"
+      ]
+    },
+    {
+      "palavra": "TORCIDA",
+      "tabu": [
+        "futebol",
+        "grito",
+        "jogo",
+        "time",
+        "vibração"
+      ]
+    },
+    {
+      "palavra": "BANCO",
+      "tabu": [
+        "dinheiro",
+        "conta",
+        "agência",
+        "poupar",
+        "saque"
+      ]
+    },
+    {
+      "palavra": "MOTO",
+      "tabu": [
+        "duas rodas",
+        "capacete",
+        "piloto",
+        "velocidade",
+        "rua"
+      ]
+    },
+    {
+      "palavra": "CAMINHÃO",
+      "tabu": [
+        "carga",
+        "rodovia",
+        "motorista",
+        "grande",
+        "transportar"
+      ]
+    },
+    {
+      "palavra": "HORTA",
+      "tabu": [
+        "plantar",
+        "alface",
+        "verde",
+        "terra",
+        "orgânico"
+      ]
+    },
+    {
+      "palavra": "CHURRASCO",
+      "tabu": [
+        "carne",
+        "grelha",
+        "fogo",
+        "festa",
+        "amigos"
+      ]
+    },
+    {
+      "palavra": "CADEADO",
+      "tabu": [
+        "chave",
+        "trancar",
+        "fechar",
+        "segurança",
+        "metal"
+      ]
+    },
+    {
+      "palavra": "TERRA",
+      "tabu": [
+        "planeta",
+        "solo",
+        "mundo",
+        "natureza",
+        "vida"
+      ]
+    },
+    {
+      "palavra": "MILHO",
+      "tabu": [
+        "amarelo",
+        "pipoca",
+        "espiga",
+        "grão",
+        "plantação"
+      ]
+    },
+    {
+      "palavra": "QUADRO",
+      "tabu": [
+        "parede",
+        "foto",
+        "arte",
+        "pintura",
+        "moldura"
+      ]
+    },
+    {
+      "palavra": "CARNAVAL",
+      "tabu": [
+        "festa",
+        "fantasia",
+        "rua",
+        "música",
+        "desfile"
+      ]
+    }
+  ]
+}
