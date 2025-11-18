@@ -102,10 +102,19 @@ startTurn() {
   //
   // Próxima carta do modo Equipes
   //
-  nextCardTeam() {
-    this.current = this.words[Math.floor(Math.random() * this.words.length)];
-    this.showCardTeam();
-  },
+startTurn() {
+  // renderiza card primeiro
+  this.nextCardTeam();
+
+  // aguarda o DOM criar o #timer (pequeno delay)
+  setTimeout(() => {
+    const timerEl = document.getElementById("timer");
+    if (timerEl) {
+      Timer.start(timerEl, this.settings.time, () => this.finishTurn());
+    }
+  }, 50);
+}
+
 
   //
   // Tela da carta do Modo Equipes
