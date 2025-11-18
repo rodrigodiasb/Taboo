@@ -6,24 +6,16 @@ export class Timer {
     this.onFinish = onFinish;
     this.interval = null;
   }
-
   start(){
     if(this.interval) clearInterval(this.interval);
     this.interval = setInterval(()=> {
       this.time--;
       this.onTick(this.time);
-      if(this.time <= 10 && this.time > 0){
-        try{ if(navigator.vibrate) navigator.vibrate(40); }catch(e){}
-      }
       if(this.time <= 0){
         clearInterval(this.interval);
         this.onFinish();
       }
     },1000);
   }
-
-  stop(){
-    if(this.interval) clearInterval(this.interval);
-    this.interval = null;
-  }
+  stop(){ if(this.interval) clearInterval(this.interval); this.interval=null; }
 }
