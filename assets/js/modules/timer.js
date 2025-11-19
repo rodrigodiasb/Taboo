@@ -11,13 +11,14 @@ export const Timer = {
 
     const el = document.getElementById("global-timer");
     el.classList.remove("hidden");
+    el.classList.remove("animate-pulse");
     el.textContent = this.timeLeft;
 
     this.interval = setInterval(() => {
       this.timeLeft--;
       el.textContent = this.timeLeft;
 
-      // Contagem regressiva tensa nos últimos 5 segundos
+      // últimos 5 segundos com efeito
       if (this.timeLeft <= 5) {
         el.classList.add("animate-pulse");
       }
