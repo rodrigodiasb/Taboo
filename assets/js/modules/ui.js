@@ -60,4 +60,22 @@ export const UI = {
       Game.startTeams();
     };
   }
+  export const UIEffects = {
+  animateCardReplace(element, newHTML) {
+    element.classList.add("card-exit");
+
+    setTimeout(() => {
+      element.innerHTML = newHTML;
+
+      element.classList.remove("card-exit");
+      element.classList.add("card-enter");
+
+      setTimeout(() => {
+        element.classList.add("card-enter-active");
+        element.classList.remove("card-enter");
+      }, 20);
+    }, 200);
+  }
+};
+
 };
