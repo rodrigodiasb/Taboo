@@ -1,6 +1,9 @@
 import { Game } from "./game.js";
 
 export const UI = {
+  /* ============================
+     TELA INICIAL
+  =============================*/
   loadHomeScreen() {
     document.getElementById("app").innerHTML = `
       <div class="card text-center space-y-4">
@@ -15,31 +18,35 @@ export const UI = {
     document.getElementById("btnTeams").onclick = () => this.loadTeamsConfig();
   },
 
+  /* ============================
+     CONFIGURAR TIMES
+  =============================*/
   loadTeamsConfig() {
     document.getElementById("app").innerHTML = `
       <div class="card space-y-4">
-        <h2 class="text-xl font-bold">Times</h2>
+        <h2 class="text-xl font-bold">Configurar Equipes</h2>
 
         <input id="teamName" class="input" placeholder="Nome do time">
 
         <div class="btn bg-blue-600" id="btnAddTeam">Adicionar time</div>
 
-        <div id="teamList" class="space-y-1"></div>
+        <div id="teamList" class="space-y-2"></div>
 
         <hr class="opacity-30">
 
-        <label class="font-semibold">Tempo (segundos)</label>
-        <input id="timeSet" class="input" value="60">
+        <label class="font-semibold">Tempo (segundos por turno)</label>
+        <input id="timeSet" class="input" type="number" value="60">
 
-        <label class="font-semibold">Turnos por time</label>
-        <input id="turnSet" class="input" value="3">
+        <label class="font-semibold">Turnos por equipe</label>
+        <input id="turnSet" class="input" type="number" value="3">
 
-        <div class="btn bg-emerald-600" id="btnStart">Iniciar jogo</div>
+        <div class="btn bg-emerald-600" id="btnStart">Iniciar Jogo</div>
       </div>
     `;
 
     const list = document.getElementById("teamList");
 
+    // Botão adicionar time
     document.getElementById("btnAddTeam").onclick = () => {
       const name = document.getElementById("teamName").value.trim();
       if (!name) return;
@@ -47,12 +54,13 @@ export const UI = {
       Game.teams.push({ name, score: 0 });
 
       list.innerHTML = Game.teams
-        .map(t => `<div>${t.name}</div>`)
+        .map(t => `<div class="bg-slate-800 p-2 rounded">${t.name}</div>`)
         .join("");
 
       document.getElementById("teamName").value = "";
     };
 
+    // Iniciar jogo
     document.getElementById("btnStart").onclick = () => {
       Game.settings.time = Number(document.getElementById("timeSet").value);
       Game.settings.turnos = Number(document.getElementById("turnSet").value);
@@ -60,13 +68,21 @@ export const UI = {
       Game.startTeams();
     };
   }
-  export const UIEffects = {
+};
+
+/* ============================
+   EFEITOS VISUAIS NAS CARTAS
+=============================*/
+export const UIEffects = {
   animateCardReplace(element, newHTML) {
+    // anima saída
     element.classList.add("card-exit");
 
     setTimeout(() => {
+      // troca conteúdo
       element.innerHTML = newHTML;
 
+      // anima entrada
       element.classList.remove("card-exit");
       element.classList.add("card-enter");
 
@@ -76,6 +92,4 @@ export const UI = {
       }, 20);
     }, 200);
   }
-};
-
 };
