@@ -1,5 +1,5 @@
 import { Timer } from "./timer.js";
-import { UI, UIEffects } from "./ui.js";
+import { UI } from "./ui.js";
 import { Sound } from "./sound.js";
 
 export const Game = {
@@ -19,19 +19,44 @@ export const Game = {
     this.words = await res.json();
   },
 
+  //
+  // ─── MODO LIVRE ─────────────────────────────────────────────────────────────
+  //
   async startLivre() {
     await this.loadWords();
     this.nextCardLivre();
   },
 
+  nextCardLivre() {
+    this.current = this.words[Math.floor(Math.random() * this.words.length)];
+    this.showCardLivre();
+  },
+
+  showCardLivre() {
+    document.getElementById("app").innerHTML = `
+      <div class="card">
+        <h2 class="text-3xl font-bold text-center mb-4">${this.current.palavra}</h2>
+
+        <div class="bg-slate-700 p-3 rounded mb-4">
+          <h3 class="font-semibold mb-2">Palavras proibidas:</h3>
+          <ul class="space-y-1">
+            ${this.current.tabus.map(t => `<li>• ${t}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div class="btn bg-blue-600 w-full" id="btnNext">Próxima</div>
+      </div>
+    `;
+
+    document.getElementById("btnNext").onclick = () => this.nextCardLivre();
+  },
+
+  //
+  // ─── MODO EQUIPES ───────────────────────────────────────────────────────────
+  //
   async startTeams() {
     await this.loadWords();
-
     this.currentTeamIndex = 0;
-
-    // Define turnos de cada time
-    this.teams.forEach(t => t.turnsLeft = this.settings.turnos);
-
     this.turnStartScreen();
   },
 
@@ -44,74 +69,56 @@ export const Game = {
         <h1 class="text-3xl font-bold mb-6">${team.name}</h1>
 
         <p class="mb-4">Clique quando estiverem prontos!</p>
-
         <div class="btn bg-emerald-600" id="btnOK">OK, começar</div>
       </div>
     `;
 
-    document.getElementById("btnOK").onclick = () => this.startTurn();
+    // Inicia o turno
+    document.getElementById("btnOK").onclick = () => {
+      // Mostra a interface do turno (com timer fixo no topo)
+      this.startTurn();
+    };
   },
 
   startTurn() {
-    Timer.start(this.settings.time, () => this.finishTurn());
+    // Renderiza a estrutura do turno, COM TIMER FIXO
+    this.renderTurnLayout();
+
+    // Inicia o cronômetro
+    Timer.start(
+      document.getElementById("timer"),
+      this.settings.time,
+      () => this.finishTurn()
+    );
+
+    // Carrega a primeira palavra
     this.nextCardTeam();
   },
 
-  getRandomCard() {
-    return this.words[Math.floor(Math.random() * this.words.length)];
-  },
+  renderTurnLayout() {
+    const team = this.teams[this.currentTeamIndex];
 
-  /* ======================
-     MODO LIVRE
-  =======================*/
+    document.getElementById("app").innerHTML = `
+      <h1 class="text-center text-xl font-bold mb-3">
+        Jogando: ${team.name}
+      </h1>
 
-  nextCardLivre() {
-    this.current = this.getRandomCard();
+      <div id="timer" class="text-center text-3xl font-bold mb-4"></div>
 
-    const app = document.getElementById("app");
-    UIEffects.animateCardReplace(app, this.getCardLivreHTML());
-
-    setTimeout(() => {
-      document.getElementById("btnNext").onclick = () => this.nextCardLivre();
-    }, 250);
-  },
-
-  getCardLivreHTML() {
-    return `
-      <div class="card">
-        <h2 class="text-3xl font-bold text-center mb-4">${this.current.palavra}</h2>
-
-        <div class="bg-slate-700 p-3 rounded mb-4">
-          <h3 class="font-semibold mb-2">Palavras proibidas:</h3>
-          <ul class="space-y-1">
-            ${this.current.tabus.map(t => `<li>• ${t}</li>`).join("")}
-          </ul>
-        </div>
-
-        <div class="btn bg-emerald-600" id="btnNext">Próxima</div>
-      </div>
+      <div id="card-container"></div>
     `;
   },
 
-  /* ======================
-     MODO EQUIPES
-  =======================*/
-
   nextCardTeam() {
-    this.current = this.getRandomCard();
-
-    const app = document.getElementById("app");
-    UIEffects.animateCardReplace(app, this.getCardTeamHTML());
-
-    setTimeout(() => this.bindTeamButtons(), 250);
+    this.current = this.words[Math.floor(Math.random() * this.words.length)];
+    this.showCardTeam();
   },
 
-  getCardTeamHTML() {
+  showCardTeam() {
     const team = this.teams[this.currentTeamIndex];
 
-    return `
-      <h1 class="text-center text-xl font-bold mb-3">Jogando: ${team.name}</h1>
-
+    // ATUALIZA APENAS O CARD, SEM APAGAR O TIMER
+    document.getElementById("card-container").innerHTML = `
       <div class="card">
         <h2 class="text-3xl font-bold text-center mb-4">${this.current.palavra}</h2>
 
@@ -123,16 +130,14 @@ export const Game = {
         </div>
 
         <div class="grid grid-cols-3 gap-3">
-          <div class="btn bg-blue-600" id="btnPular">Pular (- para outros)</div>
-          <div class="btn bg-rose-600" id="btnTaboo">TABOO (-1)</div>
-          <div class="btn bg-emerald-600" id="btnAcerto">CERTO (+1)</div>
+          <div class="btn bg-blue-600" id="btnPular">Pular</div>
+          <div class="btn bg-rose-600" id="btnTaboo">TABOO</div>
+          <div class="btn bg-emerald-600" id="btnAcerto">CERTO</div>
         </div>
       </div>
     `;
-  },
 
-  bindTeamButtons() {
-    const team = this.teams[this.currentTeamIndex];
+    // ─── BOTÕES ───────────────────────────────────────────────
     let pularLocked = false;
 
     document.getElementById("btnPular").onclick = () => {
@@ -142,8 +147,9 @@ export const Game = {
       pularLocked = true;
       setTimeout(() => pularLocked = false, 10000);
 
-      this.teams.forEach((t, idx) => {
-        if (idx !== this.currentTeamIndex) t.score++;
+      // Todas outras equipes ganham ponto
+      this.teams.forEach((t, i) => {
+        if (i !== this.currentTeamIndex) t.score++;
       });
 
       this.nextCardTeam();
@@ -162,36 +168,31 @@ export const Game = {
     };
   },
 
-  /* ======================
-     FIM DE TURNO
-  =======================*/
-
+  //
+  // ─── FINAL DO TURNO ──────────────────────────────────────────
+  //
   finishTurn() {
+    // reduz turno deste time
     this.teams[this.currentTeamIndex].turnsLeft--;
 
-    let nextIndex = null;
-
-    for (let i = 1; i <= this.teams.length; i++) {
-      const idx = (this.currentTeamIndex + i) % this.teams.length;
-      if (this.teams[idx].turnsLeft > 0) {
-        nextIndex = idx;
-        break;
-      }
-    }
-
-    if (nextIndex === null) {
+    // acabou tudo?
+    const restante = this.teams.some(t => t.turnsLeft > 0);
+    if (!restante) {
       this.showFinalScore();
       return;
     }
 
-    this.currentTeamIndex = nextIndex;
+    // avança ciclicamente para o próximo time
+    do {
+      this.currentTeamIndex = (this.currentTeamIndex + 1) % this.teams.length;
+    } while (this.teams[this.currentTeamIndex].turnsLeft <= 0);
+
     this.turnStartScreen();
   },
 
-  /* ======================
-     PLACAR FINAL
-  =======================*/
-
+  //
+  // ─── PLACAR FINAL ───────────────────────────────────────────
+  //
   showFinalScore() {
     document.getElementById("app").innerHTML = `
       <div class="card">

@@ -1,41 +1,25 @@
+import { Sound } from "./sound.js";
+
 export const Timer = {
-  timeLeft: 0,
   interval: null,
-  callbackEnd: null,
 
-  start(seconds, onEnd) {
-    this.stop();
+  start(el, seconds, onFinish) {
+    let time = seconds;
+    el.textContent = time;
 
-    this.timeLeft = seconds;
-    this.callbackEnd = onEnd;
-
-    const el = document.getElementById("global-timer");
-    el.classList.remove("hidden");
-    el.classList.remove("animate-pulse");
-    el.textContent = this.timeLeft;
+    clearInterval(this.interval);
 
     this.interval = setInterval(() => {
-      this.timeLeft--;
-      el.textContent = this.timeLeft;
+      time--;
+      el.textContent = time;
 
-      // últimos 5 segundos com efeito
-      if (this.timeLeft <= 5) {
-        el.classList.add("animate-pulse");
+      if (time <= 10 && time > 0) Sound.beep();
+
+      if (time <= 0) {
+        Sound.end();
+        clearInterval(this.interval);
+        onFinish();
       }
-
-      if (this.timeLeft <= 0) {
-        this.stop();
-        el.classList.add("hidden");
-        if (this.callbackEnd) this.callbackEnd();
-      }
-
     }, 1000);
-  },
-
-  stop() {
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
-    }
   }
 };
