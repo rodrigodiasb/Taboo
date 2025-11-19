@@ -19,17 +19,56 @@ export const Game = {
     this.words = await res.json();
   },
 
-  //
-  // ─── MODO LIVRE ─────────────────────────────────────────────────────────────
-  //
   async startLivre() {
     await this.loadWords();
     this.nextCardLivre();
   },
 
+  async startTeams() {
+    await this.loadWords();
+
+    this.currentTeamIndex = 0;
+
+    // prepara turnos de cada time
+    this.teams.forEach(t => t.turnsLeft = this.settings.turnos);
+
+    this.turnStartScreen();
+  },
+
+  turnStartScreen() {
+    const team = this.teams[this.currentTeamIndex];
+
+    document.getElementById("app").innerHTML = `
+      <div class="card text-center">
+        <h2 class="text-xl mb-4">Próxima equipe:</h2>
+        <h1 class="text-3xl font-bold mb-6">${team.name}</h1>
+
+        <p class="mb-4">Clique quando estiverem prontos!</p>
+
+        <div class="btn bg-emerald-600" id="btnOK">OK, começar</div>
+      </div>
+    `;
+
+    document.getElementById("btnOK").onclick = () => this.startTurn();
+  },
+
+  startTurn() {
+    Timer.start(this.settings.time, () => this.finishTurn());
+    this.nextCardTeam();
+  },
+
   nextCardLivre() {
-    this.current = this.words[Math.floor(Math.random() * this.words.length)];
+    this.current = this.getRandomCard();
     this.showCardLivre();
+  },
+
+  nextCardTeam() {
+    this.current = this.getRandomCard();
+    this.showCardTeam();
+  },
+
+  getRandomCard() {
+    return this.words[Math.floor(Math.random() * this.words.length)];
   },
 
   showCardLivre() {
@@ -44,78 +83,19 @@ export const Game = {
           </ul>
         </div>
 
-        <div class="btn bg-blue-600 w-full" id="btnNext">Próxima</div>
+        <div class="btn bg-emerald-600" id="btnNext">Próxima</div>
       </div>
     `;
 
     document.getElementById("btnNext").onclick = () => this.nextCardLivre();
   },
 
-  //
-  // ─── MODO EQUIPES ───────────────────────────────────────────────────────────
-  //
-  async startTeams() {
-    await this.loadWords();
-    this.currentTeamIndex = 0;
-    this.turnStartScreen();
-  },
-
-  turnStartScreen() {
-    const team = this.teams[this.currentTeamIndex];
-
-    document.getElementById("app").innerHTML = `
-      <div class="card text-center">
-        <h2 class="text-xl mb-4">Próxima equipe:</h2>
-        <h1 class="text-3xl font-bold mb-6">${team.name}</h1>
-
-        <p class="mb-4">Clique quando estiverem prontos!</p>
-        <div class="btn bg-emerald-600" id="btnOK">OK, começar</div>
-      </div>
-    `;
-
-    // Inicia o turno
-    document.getElementById("btnOK").onclick = () => {
-      // Mostra a interface do turno (com timer fixo no topo)
-      this.startTurn();
-    };
-  },
-
-  startTurn() {
-    // Renderiza a estrutura do turno, COM TIMER FIXO
-    this.renderTurnLayout();
-
-    // Inicia o cronômetro
-Timer.start(this.settings.time, () => this.finishTurn());
-
-
-    // Carrega a primeira palavra
-    this.nextCardTeam();
-  },
-
-  renderTurnLayout() {
-    const team = this.teams[this.currentTeamIndex];
-
-    document.getElementById("app").innerHTML = `
-      <h1 class="text-center text-xl font-bold mb-3">
-        Jogando: ${team.name}
-      </h1>
-
-      <div id="timer" class="text-center text-3xl font-bold mb-4"></div>
-
-      <div id="card-container"></div>
-    `;
-  },
-
-  nextCardTeam() {
-    this.current = this.words[Math.floor(Math.random() * this.words.length)];
-    this.showCardTeam();
-  },
-
   showCardTeam() {
     const team = this.teams[this.currentTeamIndex];
 
-    // ATUALIZA APENAS O CARD, SEM APAGAR O TIMER
-    document.getElementById("card-container").innerHTML = `
+    document.getElementById("app").innerHTML = `
+      <h1 class="text-center text-xl font-bold mb-3">Jogando: ${team.name}</h1>
+
       <div class="card">
         <h2 class="text-3xl font-bold text-center mb-4">${this.current.palavra}</h2>
 
@@ -127,14 +107,13 @@ Timer.start(this.settings.time, () => this.finishTurn());
         </div>
 
         <div class="grid grid-cols-3 gap-3">
-          <div class="btn bg-blue-600" id="btnPular">Pular</div>
-          <div class="btn bg-rose-600" id="btnTaboo">TABOO</div>
-          <div class="btn bg-emerald-600" id="btnAcerto">CERTO</div>
+          <div class="btn bg-blue-600" id="btnPular">Pular (- para outros)</div>
+          <div class="btn bg-rose-600" id="btnTaboo">TABOO (-1)</div>
+          <div class="btn bg-emerald-600" id="btnAcerto">CERTO (+1)</div>
         </div>
       </div>
     `;
 
-    // ─── BOTÕES ───────────────────────────────────────────────
     let pularLocked = false;
 
     document.getElementById("btnPular").onclick = () => {
@@ -144,9 +123,8 @@ Timer.start(this.settings.time, () => this.finishTurn());
       pularLocked = true;
       setTimeout(() => pularLocked = false, 10000);
 
-      // Todas outras equipes ganham ponto
-      this.teams.forEach((t, i) => {
-        if (i !== this.currentTeamIndex) t.score++;
+      this.teams.forEach((t, idx) => {
+        if (idx !== this.currentTeamIndex) t.score++;
       });
 
       this.nextCardTeam();
@@ -165,31 +143,29 @@ Timer.start(this.settings.time, () => this.finishTurn());
     };
   },
 
-  //
-  // ─── FINAL DO TURNO ──────────────────────────────────────────
-  //
   finishTurn() {
-    // reduz turno deste time
     this.teams[this.currentTeamIndex].turnsLeft--;
 
-    // acabou tudo?
-    const restante = this.teams.some(t => t.turnsLeft > 0);
-    if (!restante) {
+    // ordem correta: A → B → C → A → B → C, respeitando turnos restantes
+    let next = null;
+
+    for (let i = 1; i <= this.teams.length; i++) {
+      const idx = (this.currentTeamIndex + i) % this.teams.length;
+      if (this.teams[idx].turnsLeft > 0) {
+        next = idx;
+        break;
+      }
+    }
+
+    if (next === null) {
       this.showFinalScore();
       return;
     }
 
-    // avança ciclicamente para o próximo time
-    do {
-      this.currentTeamIndex = (this.currentTeamIndex + 1) % this.teams.length;
-    } while (this.teams[this.currentTeamIndex].turnsLeft <= 0);
-
+    this.currentTeamIndex = next;
     this.turnStartScreen();
   },
 
-  //
-  // ─── PLACAR FINAL ───────────────────────────────────────────
-  //
   showFinalScore() {
     document.getElementById("app").innerHTML = `
       <div class="card">
@@ -198,8 +174,7 @@ Timer.start(this.settings.time, () => this.finishTurn());
         <ul class="space-y-3">
           ${this.teams
             .sort((a, b) => b.score - a.score)
-            .map(t => `<li>${t.name}: <b>${t.score}</b></li>`)
-            .join("")}
+            .map(t => `<li>${t.name}: <b>${t.score}</b></li>`).join("")}
         </ul>
 
         <div class="btn bg-emerald-600 mt-6" id="btnVoltar">
