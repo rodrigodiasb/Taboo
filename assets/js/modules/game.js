@@ -1,5 +1,5 @@
 import { Timer } from "./timer.js";
-import { UI } from "./ui.js";
+import { UI, UIEffects } from "./ui.js";
 import { Sound } from "./sound.js";
 
 export const Game = {
@@ -29,7 +29,7 @@ export const Game = {
 
     this.currentTeamIndex = 0;
 
-    // prepara turnos de cada time
+    // Define turnos de cada time
     this.teams.forEach(t => t.turnsLeft = this.settings.turnos);
 
     this.turnStartScreen();
@@ -57,22 +57,27 @@ export const Game = {
     this.nextCardTeam();
   },
 
-  nextCardLivre() {
-    this.current = this.getRandomCard();
-    this.showCardLivre();
-  },
-
-  nextCardTeam() {
-    this.current = this.getRandomCard();
-    this.showCardTeam();
-  },
-
   getRandomCard() {
     return this.words[Math.floor(Math.random() * this.words.length)];
   },
 
-  showCardLivre() {
-    document.getElementById("app").innerHTML = `
+  /* ======================
+     MODO LIVRE
+  =======================*/
+
+  nextCardLivre() {
+    this.current = this.getRandomCard();
+
+    const app = document.getElementById("app");
+    UIEffects.animateCardReplace(app, this.getCardLivreHTML());
+
+    setTimeout(() => {
+      document.getElementById("btnNext").onclick = () => this.nextCardLivre();
+    }, 250);
+  },
+
+  getCardLivreHTML() {
+    return `
       <div class="card">
         <h2 class="text-3xl font-bold text-center mb-4">${this.current.palavra}</h2>
 
@@ -86,14 +91,25 @@ export const Game = {
         <div class="btn bg-emerald-600" id="btnNext">Próxima</div>
       </div>
     `;
-
-    document.getElementById("btnNext").onclick = () => this.nextCardLivre();
   },
 
-  showCardTeam() {
+  /* ======================
+     MODO EQUIPES
+  =======================*/
+
+  nextCardTeam() {
+    this.current = this.getRandomCard();
+
+    const app = document.getElementById("app");
+    UIEffects.animateCardReplace(app, this.getCardTeamHTML());
+
+    setTimeout(() => this.bindTeamButtons(), 250);
+  },
+
+  getCardTeamHTML() {
     const team = this.teams[this.currentTeamIndex];
 
-    document.getElementById("app").innerHTML = `
+    return `
       <h1 class="text-center text-xl font-bold mb-3">Jogando: ${team.name}</h1>
 
       <div class="card">
@@ -113,7 +129,10 @@ export const Game = {
         </div>
       </div>
     `;
+  },
 
+  bindTeamButtons() {
+    const team = this.teams[this.currentTeamIndex];
     let pularLocked = false;
 
     document.getElementById("btnPular").onclick = () => {
@@ -143,28 +162,35 @@ export const Game = {
     };
   },
 
+  /* ======================
+     FIM DE TURNO
+  =======================*/
+
   finishTurn() {
     this.teams[this.currentTeamIndex].turnsLeft--;
 
-    // ordem correta: A → B → C → A → B → C, respeitando turnos restantes
-    let next = null;
+    let nextIndex = null;
 
     for (let i = 1; i <= this.teams.length; i++) {
       const idx = (this.currentTeamIndex + i) % this.teams.length;
       if (this.teams[idx].turnsLeft > 0) {
-        next = idx;
+        nextIndex = idx;
         break;
       }
     }
 
-    if (next === null) {
+    if (nextIndex === null) {
       this.showFinalScore();
       return;
     }
 
-    this.currentTeamIndex = next;
+    this.currentTeamIndex = nextIndex;
     this.turnStartScreen();
   },
+
+  /* ======================
+     PLACAR FINAL
+  =======================*/
 
   showFinalScore() {
     document.getElementById("app").innerHTML = `
@@ -174,7 +200,8 @@ export const Game = {
         <ul class="space-y-3">
           ${this.teams
             .sort((a, b) => b.score - a.score)
-            .map(t => `<li>${t.name}: <b>${t.score}</b></li>`).join("")}
+            .map(t => `<li>${t.name}: <b>${t.score}</b></li>`)
+            .join("")}
         </ul>
 
         <div class="btn bg-emerald-600 mt-6" id="btnVoltar">
