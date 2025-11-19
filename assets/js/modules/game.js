@@ -85,11 +85,8 @@ export const Game = {
     this.renderTurnLayout();
 
     // Inicia o cronômetro
-    Timer.start(
-      document.getElementById("timer"),
-      this.settings.time,
-      () => this.finishTurn()
-    );
+Timer.start(this.settings.time, () => this.finishTurn());
+
 
     // Carrega a primeira palavra
     this.nextCardTeam();
