@@ -16,3 +16,23 @@
 .btn:hover {
   background: #64748b;
 }
+
+/* Fade + slide para esquerda */
+.card-exit {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.25s ease-out;
+}
+
+/* Fade + slide vindo da direita */
+.card-enter {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+.card-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.25s ease-out;
+}
+
